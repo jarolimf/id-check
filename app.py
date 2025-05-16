@@ -3,7 +3,7 @@ import streamlit as st
 
 LANGUAGES = {
     "de": {
-        "title": "🔍 ID-Online-Checker",
+        "title": "🔍 ID-Checker",
         "description": "Vergleiche zwei ID-Listen, um online verfügbare oder nicht verfügbare IDs zu ermitteln.",
         "mode_label": "Wie möchtest du deine Listen eingeben?",
         "mode_file": "📂 Datei-Upload",
@@ -30,7 +30,7 @@ LANGUAGES = {
         "language_label": "Sprache auswählen",
     },
     "en": {
-        "title": "🔍 ID Online Checker",
+        "title": "🔍 ID-Checker",
         "description": "Compare two ID lists to find which IDs are available or not available online.",
         "mode_label": "How do you want to enter your lists?",
         "mode_file": "📂 File Upload",
