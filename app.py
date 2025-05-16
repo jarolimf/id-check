@@ -3,8 +3,8 @@ import streamlit as st
 
 LANGUAGES = {
     "de": {
-        "title": "🔍 ID-Checker",
-        "description": "Vergleiche zwei ID-Listen, um verfügbare oder nicht verfügbare IDs zu ermitteln.",
+        "title": "🔍 ID-Online-Checker",
+        "description": "Vergleiche zwei ID-Listen, um online verfügbare oder nicht verfügbare IDs zu ermitteln.",
         "mode_label": "Wie möchtest du deine Listen eingeben?",
         "mode_file": "📂 Datei-Upload",
         "mode_manual": "✍️ Manuelle Eingabe",
@@ -19,19 +19,19 @@ LANGUAGES = {
         "lines_entered": "📝 {count} IDs eingegeben.",
         "clear_button": "🧹 Leeren",
         "results_title": "📊 Ergebnisse",
-        "success_result_online": "✅ {found} von {total} IDs sind verfügbar.",
-        "success_result_offline": "❌ {found} von {total} IDs sind nicht verfügbar.",
+        "success_result_online": "✅ {found} von {total} IDs sind online verfügbar.",
+        "success_result_offline": "❌ {found} von {total} IDs sind nicht online verfügbar.",
         "no_results": "Keine Treffer gefunden.",
         "show_online": "📋 Gefundene IDs anzeigen",
         "download_button": "📥 Ergebnisse herunterladen",
         "incomplete": "Bitte gib für beide Listen entweder eine Datei **oder** Text ein, um fortzufahren.",
-        "footer": "🔒 Alle Daten bleiben lokal. Nichts wird gespeichert oder an Dritte übertragen.",
+        "footer": "🔒 Alle Daten bleiben lokal. Nichts wird gespeichert oder übertragen.",
         "error": "Fehler beim Verarbeiten: {err}",
         "language_label": "Sprache auswählen",
     },
     "en": {
-        "title": "🔍 ID-Checker",
-        "description": "Compare two ID lists to find which IDs are available or not available.",
+        "title": "🔍 ID Online Checker",
+        "description": "Compare two ID lists to find which IDs are available or not available online.",
         "mode_label": "How do you want to enter your lists?",
         "mode_file": "📂 File Upload",
         "mode_manual": "✍️ Manual Input",
@@ -46,13 +46,13 @@ LANGUAGES = {
         "lines_entered": "📝 {count} IDs entered.",
         "clear_button": "🧹 Clear",
         "results_title": "📊 Results",
-        "success_result_online": "✅ {found} out of {total} IDs are available.",
-        "success_result_offline": "❌ {found} out of {total} IDs are NOT available.",
+        "success_result_online": "✅ {found} out of {total} IDs are available online.",
+        "success_result_offline": "❌ {found} out of {total} IDs are NOT available online.",
         "no_results": "No matches found.",
         "show_online": "📋 Show found IDs",
         "download_button": "📥 Download results",
         "incomplete": "Please enter text or upload files for both lists to proceed.",
-        "footer": "🔒 All data is processed locally. Nothing is stored or sent to a third party.",
+        "footer": "🔒 All data is processed locally. Nothing is stored or sent.",
         "error": "Error while processing: {err}",
         "language_label": "Select language",
     }
@@ -73,7 +73,7 @@ def get_ids_from_text(text):
 st.set_page_config(page_title="ID Checker", layout="centered", page_icon="🔍")
 
 lang_options = ["de", "en"]
-lang_labels = {"de": "Deutsch", "en": "English"}
+lang_labels = {"de": "🇩🇪 Deutsch", "en": "🇬🇧 English"}
 language = st.radio(
     label="🌐",
     options=lang_options,
@@ -116,7 +116,6 @@ else:
         st.caption(t["lines_entered"].format(count=len(st.session_state.manual_1.strip().splitlines())))
         if st.button(t["clear_button"], key="clear1"):
             st.session_state.manual_1 = ""
-            st.experimental_rerun()
     with col2:
         st.markdown(t["manual_list2_label"])
         st.session_state.manual_2 = st.text_area(
@@ -128,7 +127,7 @@ else:
         st.caption(t["lines_entered"].format(count=len(st.session_state.manual_2.strip().splitlines())))
         if st.button(t["clear_button"], key="clear2"):
             st.session_state.manual_2 = ""
-            st.experimental_rerun()
+
     use_file1 = st.session_state.manual_1.strip() != ""
     use_file2 = st.session_state.manual_2.strip() != ""
 
@@ -157,9 +156,7 @@ if use_file1 and use_file2:
         with st.expander(t["show_online"]):
             st.code("\n".join(result_ids) if result_ids else t["no_results"])
 
-        filename = "online.txt"
-        if check_mode == t["check_offline"]:
-            filename = "nicht_online.txt"
+        filename = "online.txt" if check_mode == t["check_online"] else "nicht_online.txt"
 
         st.download_button(
             label=t["download_button"],
