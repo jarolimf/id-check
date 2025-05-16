@@ -128,7 +128,7 @@ else:
         st.caption(t["lines_entered"].format(count=len(st.session_state.manual_2.strip().splitlines())))
         if st.button(t["clear_button"], key="clear2"):
             st.session_state.manual_2 = ""
-            st.experimental_user_data.clear()
+            st.experimental_rerun()
     use_file1 = st.session_state.manual_1.strip() != ""
     use_file2 = st.session_state.manual_2.strip() != ""
 
