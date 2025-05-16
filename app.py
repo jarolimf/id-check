@@ -95,6 +95,12 @@ if "manual_1" not in st.session_state:
 if "manual_2" not in st.session_state:
     st.session_state["manual_2"] = ""
 
+def clear_manual_1():
+    st.session_state.manual_1 = ""
+
+def clear_manual_2():
+    st.session_state.manual_2 = ""
+
 if mode == t["mode_file"]:
     col1, col2 = st.columns(2)
     with col1:
@@ -107,26 +113,22 @@ else:
     col1, col2 = st.columns(2)
     with col1:
         st.markdown(t["manual_list1_label"])
-        st.session_state.manual_1 = st.text_area(
+        st.text_area(
             t["textarea_placeholder"],
-            value=st.session_state.manual_1,
+            key="manual_1",
             height=200,
-            key="text_area_manual_1"
         )
         st.caption(t["lines_entered"].format(count=len(st.session_state.manual_1.strip().splitlines())))
-        if st.button(t["clear_button"], key="clear1"):
-            st.session_state.manual_1 = ""
+        st.button(t["clear_button"], key="clear1", on_click=clear_manual_1)
     with col2:
         st.markdown(t["manual_list2_label"])
-        st.session_state.manual_2 = st.text_area(
+        st.text_area(
             t["textarea_placeholder"],
-            value=st.session_state.manual_2,
+            key="manual_2",
             height=200,
-            key="text_area_manual_2"
         )
         st.caption(t["lines_entered"].format(count=len(st.session_state.manual_2.strip().splitlines())))
-        if st.button(t["clear_button"], key="clear2"):
-            st.session_state.manual_2 = ""
+        st.button(t["clear_button"], key="clear2", on_click=clear_manual_2)
 
     use_file1 = st.session_state.manual_1.strip() != ""
     use_file2 = st.session_state.manual_2.strip() != ""
