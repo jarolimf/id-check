@@ -25,7 +25,7 @@ LANGUAGES = {
         "show_online": "📋 Gefundene IDs anzeigen",
         "download_button": "📥 Ergebnisse herunterladen",
         "incomplete": "Bitte gib für beide Listen entweder eine Datei **oder** Text ein, um fortzufahren.",
-        "footer": "🔒 Alle Daten bleiben lokal. Nichts wird gespeichert oder an Dritte übertragen.",
+        "footer": "🔒 Alle Daten bleiben lokal. Nichts wird online gespeichert oder an Dritte übertragen.",
         "error": "Fehler beim Verarbeiten: {err}",
         "language_label": "Sprache auswählen",
     },
