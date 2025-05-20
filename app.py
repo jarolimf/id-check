@@ -153,7 +153,7 @@ if use_file1 and use_file2:
             st.success(t["success_result_online"].format(found=len(result_ids), total=len(ids2)))
         else:
             result_ids = sorted(ids2.difference(ids1))
-            st.success(t["success_result_offline"].format(found=len(result_ids), total=len(ids2)))
+            st.error(t["success_result_offline"].format(found=len(result_ids), total=len(ids2)))
 
         with st.expander(t["show_online"]):
             st.code("\n".join(result_ids) if result_ids else t["no_results"])
