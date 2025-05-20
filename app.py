@@ -20,7 +20,7 @@ LANGUAGES = {
         "clear_button": "🧹 Leeren",
         "results_title": "📊 Ergebnisse",
         "success_result_online": "✅ {found} von {total} IDs sind verfügbar.",
-        "success_result_offline": "❌ {found} von {total} IDs sind nicht verfügbar.",
+        "error_result_offline": "❌ {found} von {total} IDs sind nicht verfügbar.",
         "no_results": "Keine Treffer gefunden.",
         "show_online": "📋 Gefundene IDs anzeigen",
         "download_button": "📥 Ergebnisse herunterladen",
@@ -47,7 +47,7 @@ LANGUAGES = {
         "clear_button": "🧹 Clear",
         "results_title": "📊 Results",
         "success_result_online": "✅ {found} out of {total} IDs are available.",
-        "success_result_offline": "❌ {found} out of {total} IDs are NOT available.",
+        "error_result_offline": "❌ {found} out of {total} IDs are NOT available.",
         "no_results": "No matches found.",
         "show_online": "📋 Show found IDs",
         "download_button": "📥 Download results",
@@ -153,7 +153,7 @@ if use_file1 and use_file2:
             st.success(t["success_result_online"].format(found=len(result_ids), total=len(ids2)))
         else:
             result_ids = sorted(ids2.difference(ids1))
-            st.error(t["success_result_offline"].format(found=len(result_ids), total=len(ids2)))
+            st.error(t["error_result_offline"].format(found=len(result_ids), total=len(ids2)))
 
         with st.expander(t["show_online"]):
             st.code("\n".join(result_ids) if result_ids else t["no_results"])
