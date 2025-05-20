@@ -58,12 +58,6 @@ LANGUAGES = {
     }
 }
 
-def artikelnummer_bereinigen(zeile):
-    zeile = zeile.strip().lower()
-    zeile = re.sub(r'^\D+', '', zeile)
-    zeile = zeile.lstrip('0')
-    return zeile
-
 def get_ids_from_file(file):
     return set(line.decode("utf-8").strip() for line in file if line.strip())
 
