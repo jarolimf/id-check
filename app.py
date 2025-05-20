@@ -65,10 +65,10 @@ def artikelnummer_bereinigen(zeile):
     return zeile
 
 def get_ids_from_file(file):
-    return set(artikelnummer_bereinigen(line.decode("utf-8")) for line in file if line.strip())
+    return set(line.decode("utf-8").strip() for line in file if line.strip())
 
 def get_ids_from_text(text):
-    return set(artikelnummer_bereinigen(line) for line in text.strip().splitlines() if line.strip())
+    return set(line.strip() for line in text.strip().splitlines() if line.strip())
 
 st.set_page_config(page_title="ID Checker", layout="centered", page_icon="🔍")
 
